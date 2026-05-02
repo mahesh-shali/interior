@@ -1,0 +1,28 @@
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+    var isHomePage = string.Equals(controller, "Home", StringComparison.OrdinalIgnoreCase)
+        && string.Equals(action, "Index", StringComparison.OrdinalIgnoreCase);
+    var navClasses = isHomePage
+        ? "navbar navbar-expand-lg navbar-dark position-absolute top-0 start-0 w-100"
+        : "navbar navbar-expand-lg navbar-dark bg-dark shadow-sm w-100";
+}
+
+<nav class="@navClasses">
+    <div class="container">
+        <a class="navbar-brand text-white" asp-controller="Home" asp-action="Index">Interior</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="nav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link text-white" asp-controller="Home" asp-action="Index">Home</a></li>
+                @* <li class="nav-item"><a class="nav-link text-white" href="#">About</a></li> *@
+                <li class="nav-item"><a class="nav-link text-white" asp-controller="Services" asp-action="Contact">Services</a></li>
+                <li class="nav-item"><a class="nav-link text-white" asp-controller="Contact" asp-action="Contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
